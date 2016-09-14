@@ -108,7 +108,9 @@ define(['../../lib/chai/chai.js', '../../lib/underscore/underscore.js'], functio
 
         var extendsPrototype = requireOption('extendsPrototype');
         it(might('extend the constructor function\'s prototype', extendsPrototype), function() {
+
           var prototypeObjectPropertyCount = Object.keys(constructor.prototype).length;
+          // console.log(constructor.prototype);
           assuming(extendsPrototype).expect(prototypeObjectPropertyCount).to.be.above(0);
         });
 

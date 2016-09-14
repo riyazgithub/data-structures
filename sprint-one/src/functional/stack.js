@@ -12,9 +12,9 @@ var Stack = function() {
   };
 
   someInstance.pop = function() {
-    var ret 
+    var ret;
     if(counter >= 0){
-      ret = storage[counter]
+      ret = storage[counter];
       counter --;
     }
     return ret
