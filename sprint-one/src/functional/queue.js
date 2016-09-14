@@ -19,7 +19,7 @@ var Queue = function() {
       ret = storage[front]
       front++
     }
-
+    return ret;
   };
 
   someInstance.size = function() {
