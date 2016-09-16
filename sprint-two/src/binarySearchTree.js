@@ -32,7 +32,6 @@ BinarySearchTree.prototype.inserthlpr = function(value, node){
 
 BinarySearchTree.prototype.insert = function(value) {
   this.inserthlpr(value,this);
-  //debugger;
 };
 
 BinarySearchTree.prototype.containshlpr = function(value, node){
@@ -52,7 +51,7 @@ BinarySearchTree.prototype.containshlpr = function(value, node){
 
 BinarySearchTree.prototype.contains = function(value){
   return this.containshlpr(value, this);
-}
+};
 
 BinarySearchTree.prototype.depthFirstLog = function(cb){
   this.depthFirstLoghlpr(cb, this);
@@ -62,9 +61,40 @@ BinarySearchTree.prototype.depthFirstLoghlpr = function(cb, node){
   if(node === null){
     return;
   }
+  
   cb(node.value); 
   this.depthFirstLoghlpr(cb, node.left);
   this.depthFirstLoghlpr(cb, node.right);
+};
+
+BinarySearchTree.prototype.remove = function(value, node) {
+  this.printTree();
+  if (this.contains(value, this)) {
+    this.removeHelper(value, this);  
+  }
+  this.printTree();
+};
+
+BinarySearchTree.prototype.removeHelper = function(value, node) {
+  if (node.value === value) {
+    if (node.left === null && node.right === null) {
+      return null;
+    }
+  }
+
+  if (node.value > value) {
+    node.left = this.removeHelper(value, node.left);
+  } else if (node.value < value) {
+    node.right = this.removeHelper(value, node.right);
+  }
+  
+};
+
+BinarySearchTree.prototype.printTree = function(node){
+  var array = [];
+  var func = function(value) { array.push(value); };
+  this.depthFirstLog(func);
+  console.log(array);
 };
 
 /*

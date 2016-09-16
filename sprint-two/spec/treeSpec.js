@@ -45,7 +45,6 @@ describe('tree', function() {
     tree.children[0].addChild(2);
     tree.children[0].addChild(3);
     var tmp = tree.getParent(2);
-    debugger;
     expect(tmp.value).to.equal(1);
   });
 
