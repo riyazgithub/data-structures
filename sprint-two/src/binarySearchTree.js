@@ -61,7 +61,7 @@ BinarySearchTree.prototype.depthFirstLoghlpr = function(cb, node){
   if(node === null){
     return;
   }
-  
+
   cb(node.value); 
   this.depthFirstLoghlpr(cb, node.left);
   this.depthFirstLoghlpr(cb, node.right);
@@ -76,17 +76,31 @@ BinarySearchTree.prototype.remove = function(value, node) {
 };
 
 BinarySearchTree.prototype.removeHelper = function(value, node) {
-  if (node.value === value) {
-    if (node.left === null && node.right === null) {
-      return null;
+  if(node.left && node.value > value) {
+    if(node.left.value === value) {
+      node.left = null;
+    } else {
+      this.removeHelper(value,node.left);
     }
+  } else if (node.right && node.value < value) {
+    if(node.right.value === value) {
+      node.right = null;
+    } else {
+      this.removeHelper(value,node.right);
+    }    
   }
+  // debugger;
+  // if (node.value === value) {
+  //   if (node.left === null && node.right === null) {
+  //     return null;
+  //   }
+  // }
 
-  if (node.value > value) {
-    node.left = this.removeHelper(value, node.left);
-  } else if (node.value < value) {
-    node.right = this.removeHelper(value, node.right);
-  }
+  // if (node.value > value) {
+  //   node.left = this.removeHelper(value, node.left);
+  // } else if (node.value < value) {
+  //   node.right = this.removeHelper(value, node.right);
+  // }
   
 };
 
