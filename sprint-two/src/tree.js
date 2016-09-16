@@ -34,7 +34,18 @@ treeMethods.contains = function(target, node) {
   return result;
 };
 
-
+treeMethods.getParent = function(child, node) {
+  node = node || this;
+  var result = null;
+  for(var i =0 ; i< node.children.length; i++) {
+    if(node.children[i].value === child) {
+      result = node;
+    } else {
+      result = result ? result : node.getParent(child,node.children[i]);
+    }
+  }
+  return result;
+};
 
 /*
  * Complexity: What is the time complexity of the above functions?

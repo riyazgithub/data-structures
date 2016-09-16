@@ -40,5 +40,13 @@ describe('tree', function() {
     expect(tree.contains(7)).to.equal(true);
     expect(tree.contains(8)).to.equal(true);
   });
+  it('should return a target node parent for a value that the tree contains', function() {
+    tree.addChild(1);
+    tree.children[0].addChild(2);
+    tree.children[0].addChild(3);
+    var tmp = tree.getParent(2);
+    debugger;
+    expect(tmp.value).to.equal(1);
+  });
 
 });
