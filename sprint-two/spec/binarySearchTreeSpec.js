@@ -37,7 +37,7 @@ describe('binarySearchTree', function() {
     expect(array).to.eql([5, 2, 3]);
   });
 
-  it('should remove a leaf node', function(){
+  it('should remove a leaf node', function() {
     binarySearchTree.insert(10);
     binarySearchTree.insert(4);
     binarySearchTree.insert(15);

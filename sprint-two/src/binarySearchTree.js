@@ -68,11 +68,22 @@ BinarySearchTree.prototype.depthFirstLoghlpr = function(cb, node){
 };
 
 BinarySearchTree.prototype.remove = function(value, node) {
-  this.printTree();
   if (this.contains(value, this)) {
-    this.removeHelper(value, this);  
+    node = node === undefined ? this : node;
+    if (node.left && node.value > value) {
+      if (node.left.value === value) {
+        node.left = null;
+      } else {
+        this.remove(value, node.left);
+      }
+    } else if (node.right && node.value < value) {
+      if (node.right.value === value) {
+        node.right = null;
+      } else {
+        this.remove(value, node.right);
+      }    
+    }
   }
-  this.printTree();
 };
 
 BinarySearchTree.prototype.removeHelper = function(value, node) {
