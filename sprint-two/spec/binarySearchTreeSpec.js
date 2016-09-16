@@ -42,5 +42,15 @@ describe('binarySearchTree', function() {
     binarySearchTree.insert(4);
     binarySearchTree.insert(15);
     binarySearchTree.remove(15);
+    expect(binarySearchTree.contains(15)).to.equal(false);
+  });
+
+  it('should return nodes is a breadth first order', function(){
+    binarySearchTree.insert(10);
+    binarySearchTree.insert(4);
+    binarySearchTree.insert(15);
+    binarySearchTree.insert(2);
+    binarySearchTree.insert(3);
+    expect(binarySearchTree.breadthFirstLog()).to.eql([5, 4, 10, 2, 15, 3]);
   });
 });
