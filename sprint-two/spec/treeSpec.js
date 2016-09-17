@@ -47,5 +47,4 @@ describe('tree', function() {
     var tmp = tree.getParent(2);
     expect(tmp.value).to.equal(1);
   });
-
 });
