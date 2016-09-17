@@ -36,7 +36,7 @@ Graph.prototype.removeNode = function(node) {
 
 // Returns a boolean indicating whether two specified nodes are connected.  Pass in the values contained in each of the two nodes.
 Graph.prototype.hasEdge = function(fromNode, toNode) {
-  return ( this.storage[fromNode].edges[toNode] != undefined && this.storage[toNode].edges[fromNode]!=undefined );
+  return ( this.storage[fromNode].edges[toNode] !== undefined && this.storage[toNode].edges[fromNode]!=undefined );
 };
 
 // Connects two nodes in a graph by adding an edge between them.
@@ -54,12 +54,11 @@ Graph.prototype.removeEdge = function(fromNode, toNode) {
 // Pass in a callback which will be executed on each node of the graph.
 Graph.prototype.forEachNode = function(cb) {
   for (var key in this.storage) {
-//    debugger;
     cb(this.storage[key].value);
   }
 };
 
-Graph.prototype.dfs = function(node){
+Graph.prototype.dfs = function(node) {
   node = node === undefined ? this.storage[1] : node;
   var array = [];
   var returnArray = [];
@@ -69,7 +68,6 @@ Graph.prototype.dfs = function(node){
     visitedNode.visited = true;
     returnArray.push(visitedNode.value);
 
-//    debugger;
     for (var key in node.edges) {
       var currentNode = this.storage[key];
       if (!currentNode.visited) {
@@ -78,6 +76,30 @@ Graph.prototype.dfs = function(node){
     }
   }
   return returnArray;
+};
+
+Graph.prototype.adjacencyList = function adjacencyList(node) {
+  debugger;
+  node = node || this.storage[1];
+  var list = {};
+
+  node.visited = true;
+  list[node.value] = node.edges;
+  for (var key in node.edges) {
+    if (!this.storage[key].visited) {
+      var recurseList = this.adjacencyList(this.storage[key])
+      return extend(list, recurseList);
+    } else {
+      
+    }
+  }
+  return list;
+};
+
+var extend = function(to, from) {
+  for (var key in from) {
+    to[key] = from[key];
+  }
 };
 
 

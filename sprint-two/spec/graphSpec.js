@@ -82,4 +82,18 @@ describe('graph', function() {
     graph.addEdge(5, 3);
     expect(graph.dfs()).to.equal([3, 5, 2, 4, 1]);
   });
+
+  it('should return an adjacency list in dfs order', function(){
+    graph.addNode(1);
+    graph.addNode(2);
+    graph.addNode(3);
+    graph.addNode(4);
+    graph.addNode(5);
+    graph.addEdge(1, 4);
+    graph.addEdge(4, 2);
+    graph.addEdge(4, 5);
+    graph.addEdge(2, 5);
+    graph.addEdge(5, 3);
+    expect(graph.adjacencyList()).to.equal({});
+  });
 });
