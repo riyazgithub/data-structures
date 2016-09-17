@@ -8,6 +8,7 @@ var Graph = function() {
 var GraphNode = function(value) {
   this.value = value
   this.edges = {};
+  this.visited = false;
 };
 // Add a node to the graph, passing in the node's value.
 Graph.prototype.addNode = function(key) {
@@ -56,8 +57,29 @@ Graph.prototype.forEachNode = function(cb) {
 //    debugger;
     cb(this.storage[key].value);
   }
-
 };
+
+Graph.prototype.dfs = function(node){
+  node = node === undefined ? this.storage[1] : node;
+  var array = [];
+  var returnArray = [];
+  array.push(node);
+  while (array.length > 0) {
+    var visitedNode = array.pop();
+    visitedNode.visited = true;
+    returnArray.push(visitedNode.value);
+
+//    debugger;
+    for (var key in node.edges) {
+      var currentNode = this.storage[key];
+      if (!currentNode.visited) {
+        array.push(this.storage[key]);
+      }
+    }
+  }
+  return returnArray;
+};
+
 
 /*
  * Complexity: What is the time complexity of the above functions?
