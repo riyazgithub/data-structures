@@ -3,7 +3,6 @@
 // Instantiate a new graph
 var Graph = function() {
   this.storage = {};
-  this.counter = 0
 };
 var GraphNode = function(value) {
   this.value = value
@@ -64,31 +63,36 @@ Graph.prototype.dfs = function(node) {
   var returnArray = [];
   array.push(node);
   while (array.length > 0) {
-    var visitedNode = array.pop();
+    var currentNode;
+    var visitedNode = array.shift();
     visitedNode.visited = true;
-    returnArray.push(visitedNode.value);
+    returnArray.unshift(visitedNode.value);
 
     for (var key in node.edges) {
-      var currentNode = this.storage[key];
+      currentNode = this.storage[key];
       if (!currentNode.visited) {
         array.push(this.storage[key]);
       }
     }
+    node = currentNode;
   }
   return returnArray;
 };
 
 Graph.prototype.adjacencyList = function adjacencyList(node) {
-  debugger;
   node = node || this.storage[1];
   var list = {};
 
   node.visited = true;
-  list[node.value] = node.edges;
+  var edges = [];
+  for (var key in node.edges) {
+    edges.push(parseInt(key));
+  }
+  list[node.value] = edges;
   for (var key in node.edges) {
     if (!this.storage[key].visited) {
-      var recurseList = this.adjacencyList(this.storage[key])
-      return extend(list, recurseList);
+      var recurseList = this.adjacencyList(this.storage[key]);
+      extend(list, recurseList);
     } else {
       
     }

@@ -80,7 +80,7 @@ describe('graph', function() {
     graph.addEdge(4, 5);
     graph.addEdge(2, 5);
     graph.addEdge(5, 3);
-    expect(graph.dfs()).to.equal([3, 5, 2, 4, 1]);
+    expect(graph.dfs()).to.eql([3, 5, 2, 4, 1]);
   });
 
   it('should return an adjacency list in dfs order', function(){
@@ -94,6 +94,6 @@ describe('graph', function() {
     graph.addEdge(4, 5);
     graph.addEdge(2, 5);
     graph.addEdge(5, 3);
-    expect(graph.adjacencyList()).to.equal({});
+    expect(graph.adjacencyList()).to.eql({1: [4], 2: [4, 5], 3: [5], 4: [1, 2, 5], 5: [2, 3, 4]});
   });
 });
