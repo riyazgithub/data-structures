@@ -37,6 +37,12 @@ describe('binarySearchTree', function() {
     expect(array).to.eql([5, 2, 3]);
   });
 
+  it('should traverse array in order', function() {
+    binarySearchTree.insert(2);
+    binarySearchTree.insert(3);
+    expect(binarySearchTree.inOrderTraverse()).to.eql([2, 3, 5]);
+  });
+
   it('should remove a leaf node', function() {
     binarySearchTree.insert(10);
     binarySearchTree.insert(4);
@@ -45,12 +51,29 @@ describe('binarySearchTree', function() {
     expect(binarySearchTree.contains(15)).to.equal(false);
   });
 
-  it('should return nodes is a breadth first order', function(){
+  it('should keep track of the bst size', function() {
+    binarySearchTree.insert(10);
+    binarySearchTree.insert(4);
+    binarySearchTree.insert(15);
+    binarySearchTree.remove(15);
+    expect(binarySearchTree.size).to.equal(3);
+  });
+
+  it('should return nodes is a breadth first order', function() {
     binarySearchTree.insert(10);
     binarySearchTree.insert(4);
     binarySearchTree.insert(15);
     binarySearchTree.insert(2);
     binarySearchTree.insert(3);
     expect(binarySearchTree.breadthFirstLog()).to.eql([5, 4, 10, 2, 15, 3]);
+  });
+
+  it('should return a correct tree height', function() {
+    binarySearchTree.insert(10);
+    binarySearchTree.insert(11);
+    binarySearchTree.insert(12);
+    binarySearchTree.insert(13);
+    binarySearchTree.insert(14);
+    expect(binarySearchTree.getHeight(binarySearchTree)).to.eql(5);
   });
 });
